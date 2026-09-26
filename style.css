@@ -1,138 +1,232 @@
 /* ===========================================================
-   Your site's styles. Change anything here — colors, fonts,
-   sizes. Every page on the site uses this one file.
+   Stile Personalizzato: Rust and Wood (Elegante & Funzionale)
    =========================================================== */
 
 :root {
-  --ink: #16161a;          /* main text color */
-  --muted: #6b6b76;        /* quieter text */
-  --accent: #2f4fd8;       /* links and highlights */
-  --paper: #fdfdfb;        /* page background */
-  --line: #e4e4e0;         /* borders */
+  /* Tavolozza Colori */
+  --bg-dark-grey: #232526; /* Grigio scuro caldo di fondo */
+  --bg-card-grey: #2d3032; /* Grigio per card e sezioni */
+  --emerald-main: #005a43; /* Verde smeraldo scuro (Scritte principali) */
+  --emerald-light: #007a5b; /* Verde smeraldo luminoso per hover */
+  --text-white: #f5f6f7; /* Bianco primario per testi leggibili */
+  --text-muted: #b3b9bc; /* Bianco opaco/grigio chiaro per testi secondari */
+  --border-wood: #3e4244; /* Linee di divisione e bordi */
+
+  /* Font e Layout */
+  --font-family:
+    "Georgia", Cambria, "Times New Roman", Times, serif; /* Tocco Rust/Classico per i titoli */
+  --font-sans:
+    "Helvetica Neue", Helvetica, Arial, sans-serif; /* Pulito per i testi */
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   padding: 0 1.25rem 5rem;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: var(--bg-dark-grey);
+  color: var(--text-white);
+  font-family: var(--font-sans);
   font-size: 18px;
   line-height: 1.6;
 }
 
-/* Keeps everything in a readable column in the middle of the page */
-header, main, footer {
-  max-width: 44rem;
+/* Layout centrale pulito */
+header,
+main,
+footer {
+  max-width: 46rem;
   margin: 0 auto;
 }
 
-/* --- top navigation ---------------------------------------- */
+/* --- Header Migliorato & Più Strutturato -------------------- */
 
 header {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem 1.5rem;
-  padding: 2rem 0 1.5rem;
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 2.5rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2.5rem 1.5rem;
+  background: var(--bg-card-grey);
+  border: 1px solid var(--border-wood);
+  border-radius: 12px;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 header .site-name {
-  font-size: 1.15rem;
+  font-family: var(--font-family);
+  font-size: 1.5rem;
   font-weight: 700;
   text-decoration: none;
-  color: var(--ink);
-  margin-right: auto;
+  color: var(--text-white);
+  letter-spacing: 0.5px;
+}
+
+/* --- Pulsanti di Navigazione (Sessioni) -------------------- */
+
+header nav {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 header nav a {
-  color: var(--muted);
+  color: var(--text-white);
+  background: var(--bg-dark-grey);
+  padding: 0.6rem 1.2rem;
   text-decoration: none;
-  margin-left: 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid var(--border-wood);
+  transition: all 0.2s ease-in-out;
 }
 
-header nav a:hover { color: var(--accent); }
+header nav a:hover {
+  background: var(--text-white);
+  color: var(--bg-dark-grey);
+  border-color: var(--text-white);
+}
 
-/* --- text --------------------------------------------------- */
+/* Se vuoi dare un risalto "Smeraldo" al pulsante della sessione attiva (aggiungendo la classe .active nell'HTML) */
+header nav a.active {
+  background: var(--emerald-main);
+  border-color: var(--emerald-main);
+  color: var(--text-white);
+}
+
+/* --- Elementi di Testo ------------------------------------- */
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-family);
+  color: var(
+    --emerald-main
+  ); /* Verde Smeraldo Scuro per le scritte principali */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4); /* Migliora il contrasto sul grigio */
+}
 
 h1 {
-  font-size: 2.1rem;
+  font-size: 2.5rem;
   line-height: 1.2;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.75rem;
 }
 
 h2 {
-  font-size: 1.3rem;
-  margin: 2.5rem 0 0.75rem;
+  font-size: 1.6rem;
+  margin: 3rem 0 1rem;
+  border-bottom: 1px solid var(--border-wood);
+  padding-bottom: 0.5rem;
 }
 
 .tagline {
-  color: var(--muted);
-  font-size: 1.1rem;
-  margin: 0 0 2rem;
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  margin: 0 0 2.5rem;
+  font-style: italic;
 }
 
-a { color: var(--accent); }
+a {
+  color: var(--text-white);
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
 
-/* --- the list of links on the projects pages ----------------- */
+a:hover {
+  color: var(--text-muted);
+}
+
+/* --- Griglia / Lista di Card (Progetti o Sezioni) ---------- */
 
 .card-list {
   list-style: none;
   padding: 0;
-  margin: 1.5rem 0 0;
+  margin: 2rem 0 0;
 }
 
 .card-list li {
-  border: 1px solid var(--line);
+  background: var(--bg-card-grey);
+  border: 1px solid var(--border-wood);
   border-radius: 10px;
-  margin-bottom: 0.9rem;
-  transition: border-color 0.15s ease;
+  margin-bottom: 1.2rem;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.card-list li:hover { border-color: var(--accent); }
+.card-list li:hover {
+  border-color: var(--emerald-light);
+  transform: translateY(-2px);
+}
 
 .card-list a {
   display: block;
-  padding: 1.1rem 1.25rem;
+  padding: 1.3rem 1.5rem;
   text-decoration: none;
   color: inherit;
 }
 
 .card-list .title {
+  font-family: var(--font-family);
+  font-size: 1.25rem;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--text-white); /* Testo titolo card in bianco per leggibilità */
   display: block;
+  margin-bottom: 0.25rem;
+}
+
+.card-list li:hover .title {
+  color: var(
+    --emerald-light
+  ); /* Il titolo si illumina di smeraldo al passaggio */
 }
 
 .card-list .description {
-  color: var(--muted);
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
-/* --- sketch pages ------------------------------------------- */
+/* --- Pulsante Indietro (Sketch Pages) ---------------------- */
 
 .back {
-  display: inline-block;
-  margin-bottom: 1.5rem;
-  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  color: var(--text-muted);
   text-decoration: none;
   font-size: 0.95rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-wood);
+  border-radius: 6px;
+  background: var(--bg-card-grey);
+  transition: all 0.2s ease;
 }
 
-.back:hover { color: var(--accent); }
+.back:hover {
+  color: var(--text-white);
+  border-color: var(--text-white);
+}
 
-canvas { max-width: 100%; }
+canvas {
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
 
-/* --- footer -------------------------------------------------- */
+/* --- Footer -------------------------------------------------- */
 
 footer {
-  margin-top: 4rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-wood);
+  color: var(--text-muted);
   font-size: 0.9rem;
+  text-align: center;
 }
