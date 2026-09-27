@@ -1,4 +1,4 @@
-let circleX = 50;
+let circleX = 100;
 let circleY = 50;
 let speedX = 5;
 let speedY = 5;
