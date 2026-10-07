@@ -1,0 +1,31 @@
+!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My p5.js Sketch</title>
+
+    <!-- 1. Load the p5.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
+
+    <!-- 2. Load your custom sketch file -->
+
+    <!-- 3. Minimal CSS to center the canvas on a dark screen -->
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #141414; /* Dark background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; /* Takes up the full window height */
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 4. The container where your canvas will appear -->
+    <div id="sketch-holder"></div>
+    <script src="sketch.js"></script>
+  </body>
+</html>
