@@ -1,47 +1,61 @@
+console.log("nothing important here");
+
 let frames = [];
-let totalFrames = 8; // change to 5 if you only want frame_1 to frame_5
+let numFrames = 7;
+let currentFrame = 0;
+let frameSpeed = 8;
 
 function preload() {
-  for (let i = 1; i <= totalFrames; i++) {
-    frames.push(
-      loadImage(
-        "dance_frames/frame_" + i + ".png",
-        () => console.log("loaded frame_" + i),
-        () => console.log("FAILED to load frame_" + i),
-      ),
-    );
+  // Carica tutti i frame nella cartella dance_frames
+  for (let i = 1; i <= numFrames; i++) {
+    frames.push(loadImage(`dance_frames/punch_${i}.png`));
   }
 }
 
 function setup() {
-  createCanvas(800, 450);
+  let canvas = createCanvas(500, 400);
+  canvas.parent("sketch-holder");
+
+  console.log("Totale frame caricati:", frames.length);
+
+  // Stampa le dimensioni della prima immagine per verificare che non sia vuota
+  if (frames.length > 0) {
+    console.log("Dimensioni frame 1:", frames[0].width, "x", frames[0].height);
+  }
 }
 
 function draw() {
-  background(120);
-  fill(140);
+  // Disegna lo sfondo del canvas
+  background(255);
 
-  // thumbnail strip of all frames
-  for (let i = 0; i < frames.length; i++) {
-    let xPosition = i * 100;
-    image(frames[i], xPosition, 20, 100, 125);
+  // Se non ci sono frame caricati, si ferma qui
+  if (frames.length === 0) {
+    return;
   }
 
-  // animation
-  let speed = 10;
-  let index = floor(frameCount / speed) % frames.length;
-  image(frames[index], 100, 160, 200, 250);
+  // Calcola quale frame mostrare
+  currentFrame = floor(frameCount / frameSpeed) % frames.length;
+  let img = frames[currentFrame];
 
-  // debug info (delete these lines once it works)
-  fill("white");
-  textSize(16);
-  text("frames loaded: " + frames.length, 500, 200);
-  text("current index: " + index, 500, 220);
-  if (frames[index]) {
-    text(
-      "image size: " + frames[index].width + " x " + frames[index].height,
-      500,
-      240,
-    );
+  // Se l'immagine non è ancora caricata o non ha dimensioni, evita di disegnarla
+  if (!img || img.width === 0 || img.height === 0) {
+    return;
+  }
+
+  // Mantiene le proporzioni originali e adatta l'immagine al canvas
+  let scale = min(width / img.width, height / img.height);
+  let imgWidth = img.width * scale;
+  let imgHeight = img.height * scale;
+
+  let x = (width - imgWidth) / 2;
+  let y = (height - imgHeight) / 2;
+
+  // Disegna l'immagine centrata
+  image(img, x, y, imgWidth, imgHeight);
+}
+
+function keyPressed() {
+  if (key === "s" || key === "S") {
+    saveGif("character-animation", 2.67);
   }
 }
