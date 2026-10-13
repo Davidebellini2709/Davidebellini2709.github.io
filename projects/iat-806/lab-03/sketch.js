@@ -1,16 +1,7 @@
 console.log("nothing important here");
 
 let frames = [];
-<<<<<<< Updated upstream
 let numFrames = 7;
-let currentFrame = 0;
-let frameSpeed = 8;
-
-function preload() {
-  for (let i = 1; i <= numFrames; i++) {
-    frames.push(loadImage(`dance_frames/punch_${i}.png`));
-=======
-let numFrames = 8;
 let currentFrame = 0;
 let frameSpeed = 8;
 
@@ -20,25 +11,15 @@ async function setup() {
 
   // Load all animation frames
   for (let i = 1; i <= numFrames; i++) {
-    let number = String(i).padStart(2, "0");
-    let frame = await loadImage(`dance_frames/punch_${number}.png`);
+    let frame = await loadImage(`dance_frames/punch_${i}.png`);
     frames.push(frame);
->>>>>>> Stashed changes
   }
 
-<<<<<<< Updated upstream
-function setup() {
-  let canvas = createCanvas(500, 400);
-  canvas.parent("sketch-holder");
-
-  console.log("Totale frame caricati:", frames.length);
+  console.log("All frames loaded:", frames.length);
 
   if (frames.length > 0) {
     console.log("Dimensioni frame 1:", frames[0].width, "x", frames[0].height);
   }
-=======
-  console.log("All frames loaded:", frames.length);
->>>>>>> Stashed changes
 }
 
 function draw() {
@@ -48,25 +29,18 @@ function draw() {
     return;
   }
 
-<<<<<<< Updated upstream
+  // Change frame every few draw cycles
   currentFrame = floor(frameCount / frameSpeed) % frames.length;
   let img = frames[currentFrame];
 
+  // Skip if the image isn't ready yet
   if (!img || img.width === 0 || img.height === 0) {
     return;
   }
 
-  let scale = min(width / img.width, height / img.height);
-=======
-  // Change frame every few draw cycles
-  currentFrame = floor(frameCount / frameSpeed) % frames.length;
-
-  let img = frames[currentFrame];
-
   // Keep the original aspect ratio and fit the image inside the canvas
   let scale = min(width / img.width, height / img.height);
 
->>>>>>> Stashed changes
   let imgWidth = img.width * scale;
   let imgHeight = img.height * scale;
 
