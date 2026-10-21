@@ -42,9 +42,11 @@ function draw() {
 
   pulse = 0.7 + 2 * pow(max(0, sin(frameCount * 0.1)), 8); // I asked Claude for this formula, I wanted the pulse, but didn't know how to make it.
 
+  // Normally the balls run away from the mouse, but holding the button makes them chase it
+  let fleeStrength = mouseIsPressed ? -3 : 4;
+
   for (let ball of balls) {
-    ball.move();
-    ball.show();
+    ball.change(mouseX, mouseY, pulse, fleeStrength);
   }
 }
 
@@ -75,7 +77,15 @@ class Ball {
     this.y = y;
     this.color = c;
     this.r = r;
+    this.baseR = r; // return to the original size, so the heartbeat doesn't make it grow forever.
     this.speed = random(1, 3);
+  }
+
+  change(mx, my, pulseAmount, fleeStrength) {
+    this.move();
+    this.fleeFromMouse(mx, my, fleeStrength);
+    this.heartbeat(pulseAmount, 0.25);
+    this.show();
   }
 
   move() {
@@ -94,6 +104,24 @@ class Ball {
     if (this.x < 0) {
       this.x = width;
     }
+  }
+
+  // When the mouse gets close, the balls run away and the closer it is, the harder the push.
+  // With a negative byHowMuch it's the opposite: the balls get sucked toward the mouse. Helped with Claude for this one too and connected it with the hearbeat.
+  fleeFromMouse(mx, my, byHowMuch) {
+    let d = dist(this.x, this.y, mx, my);
+    let range = 100;
+    if (d < range && d > 0) {
+      let push = ((range - d) / range) * byHowMuch;
+      this.x += ((this.x - mx) / d) * push;
+      this.y += ((this.y - my) / d) * push;
+    }
+  }
+
+  // The balls swell on every beat, following the same pulse that speeds them up,
+  // so they look like blood cells pumped by a heart for real. byHowMuch sets how much they swell.
+  heartbeat(pulseAmount, byHowMuch) {
+    this.r = this.baseR * (1 + (pulseAmount - 0.7) * byHowMuch);
   }
 
   show() {
