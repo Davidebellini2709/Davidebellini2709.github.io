@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pizza Rain</title>
+
+    <!-- Three folders deep, so three levels up to the stylesheet -->
+    <link rel="stylesheet" href="../../../style.css" />
+
+    <!-- p5.js, version 1.11.1 (ml5 needs p5 1, not 2). Every sketch page needs this line. -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.1/lib/p5.min.js"></script>
+
+    <!-- ml5.js for faceMesh, and my Pizza class -->
+    <script src="https://unpkg.com/ml5@1/dist/ml5.min.js"></script>
+    <script src="Pizza.js"></script>
+
+    <!-- Your code. Keep this line last. -->
+    <script src="sketch.js"></script>
+  </head>
+  <body>
+    <header>
+      <a class="site-name" href="../../../index.html">Davide Bellini</a>
+      <nav>
+        <a href="../../../index.html">Home</a>
+        <a href="../../index.html">Projects</a>
+      </nav>
+    </header>
+    <main>
+      <a class="back" href="../index.html">&larr; IAT 806</a>
+
+      <h1>assignment 2 — Pizza Rain, prove your Italianity</h1>
+      <p class="tagline">
+        Only real Italian pizza will be allowed in this mouth. Don't you dare to
+        eat the one with pineapple, or you will be remigrated to the U.S.A!
+      </p>
+
+      <!-- The canvas p5 creates gets placed right here. -->
+      <div id="sketch-holder"></div>
+
+      <h2>Instructions:</h2>
+      <p></p>
+      <p>
+        Click or press the space bar to start. Pizzas fall from the sky: open
+        your mouth wide to eat margherita, salamino, rucola and bianca. The game
+        uses your face with the ml5.js faceMesh model, so you have to move your
+        whole head to catch them. Eat 15 pizzas to become Real Italian
+        Certified, but if you eat 3 pizzas with pineapple you lose. Press M to
+        play with the mouse instead of the camera.
+        <a href="https://github.com/YOUR-USERNAME/YOUR-USERNAME.github.io"
+          >Code on GitHub</a
+        >
+      </p>
+    </main>
+  </body>
+</html>
