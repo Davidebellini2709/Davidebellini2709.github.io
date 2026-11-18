@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Canopy — Davide Bellini</title>
+    <title>Prototype — Davide Bellini</title>
 
     <!-- Three folders deep, so three levels up to the stylesheet -->
     <link rel="stylesheet" href="../../../style.css" />
@@ -11,8 +11,25 @@
     <!-- p5.js, version 2.3.3. Every sketch page needs this line. -->
     <script src="https://cdn.jsdelivr.net/npm/p5@2.3.3/lib/p5.min.js"></script>
 
-    <!-- Your code. Keep this line last. -->
-    <script src="sketch.js"></script>
+    <!-- Your code. Canopy is modular: one file per part. Keep these lines last and in this order. -->
+    <script src="util.js"></script>
+    <!-- shared helpers, painted sprites -->
+    <script src="config.js"></script>
+    <!-- what is in the scene, moments of the day -->
+    <script src="audio.js"></script>
+    <!-- listens to the track -->
+    <script src="core.js"></script>
+    <!-- the engine: camera, time of day, weather, fog -->
+    <script src="atmosphere.js"></script>
+    <!-- sky, light through the trees, dust, rain, film -->
+    <script src="forest.js"></script>
+    <!-- trees, ferns, fallen logs, forest floor -->
+    <script src="road.js"></script>
+    <!-- roads, the diner, the body shop, the general store -->
+    <script src="creatures.js"></script>
+    <!-- deer, bears, crows, old wrecks -->
+    <script src="headtrack.js"></script>
+    <!-- optional: webcam head tracking (key C) -->
   </head>
   <body>
     <header>
@@ -25,7 +42,7 @@
     <main>
       <a class="back" href="../index.html">&larr; IAT 806</a>
 
-      <h1>Overgrown</h1>
+      <h1>Prototype</h1>
       <p class="tagline">
         An interactive visual for electronic music. Inspired by the misty,
         mysterious atmosphere of the Pacific Northwest.
@@ -36,15 +53,33 @@
 
       <h2>Instructions:</h2>
       <p>
-        Press PLAY. The track starts and the forest reacts to it: the kick
-        pulses the orange glow behind the clouds, the bass thickens the fog and
-        the undergrowth, the mids stir the orange particles in the air, the
-        highs bring more rain and make the outline of the trees flare, and the
-        overall energy speeds up the walk and brings more apparitions. Extra
-        features: double-click the canvas (or press F while the pointer is over
-        it) for fullscreen, M to use the microphone, S for a simulated beat, H
-        to show the sound readings, +/- to adjust sensitivity, and space to
-        pause. You can also drop any audio file onto the canvas.
+        Press PLAY. The camera walks through an old-growth forest of cedars,
+        firs, hemlocks and mossy maples. When the track is quiet the forest is
+        still and foggy; as it grows more intense the walk becomes a run, the
+        fog lifts and amber light cuts through the trees. Only in the most
+        intense moments does each kick send a pulse of light through the forest,
+        and a drop floods it with light. The mids fill the light with floating
+        dust, and the highs make the rain heavier when it rains.
+      </p>
+      <p>
+        Everything else happens by itself: the day goes from blue hour to dawn,
+        an overcast day, sunset and night; rain, fog and haze come and go; every
+        so often the forest opens onto a two-lane road with the Misty Cove
+        Diner, the Cedar Hollow auto body shop or the Snake Creek General Store.
+        Deer, bears, crows and abandoned cars appear like apparitions.
+      </p>
+      <p>
+        Head tracking: press C and allow the camera. Hold your head still for a
+        second while it calibrates, then turn or tilt your head to look around
+        the forest (up to about 35&deg; to the sides and 25&deg; up and down).
+        Press C again to switch it off. Face tracking runs in the browser with
+        MediaPipe, and no image leaves your computer.
+      </p>
+      <p>
+        Extra features: double-click the canvas (or press F while the pointer is
+        over it) for fullscreen, M to use the microphone, S for a simulated
+        track, H to show the sound readings, +/- to adjust sensitivity, and
+        space to pause. You can also drop any audio file onto the canvas.
       </p>
     </main>
 
